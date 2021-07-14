@@ -86,6 +86,7 @@ C:\Users\ADMINISTRADOR\source\repos\PSMApiRest\PSMApiRest\obj\Debug\PSMApiRest.c
 C:\Users\ADMINISTRADOR\source\repos\PSMApiRest\PSMApiRest\obj\Debug\PSMApiRest.csproj.CopyComplete
 C:\Users\ADMINISTRADOR\source\repos\PSMApiRest\PSMApiRest\obj\Debug\PSMApiRest.dll
 C:\Users\ADMINISTRADOR\source\repos\PSMApiRest\PSMApiRest\obj\Debug\PSMApiRest.pdb
+C:\Users\Luis\source\repos\PSMApiRest\PSMApiRest\obj\Debug\PSMApiRest.csproj.AssemblyReference.cache
 C:\Users\Luis\source\repos\PSMApiRest\PSMApiRest\obj\Debug\PSMApiRest.csproj.CoreCompileInputs.cache
 C:\Users\Luis\source\repos\PSMApiRest\PSMApiRest\bin\PSMApiRest.dll.config
 C:\Users\Luis\source\repos\PSMApiRest\PSMApiRest\bin\PSMApiRest.dll
@@ -150,4 +151,3 @@ C:\Users\Luis\source\repos\PSMApiRest\PSMApiRest\bin\Antlr3.Runtime.pdb
 C:\Users\Luis\source\repos\PSMApiRest\PSMApiRest\obj\Debug\PSMApiRest.csproj.CopyComplete
 C:\Users\Luis\source\repos\PSMApiRest\PSMApiRest\obj\Debug\PSMApiRest.dll
 C:\Users\Luis\source\repos\PSMApiRest\PSMApiRest\obj\Debug\PSMApiRest.pdb
-C:\Users\Luis\source\repos\PSMApiRest\PSMApiRest\obj\Debug\PSMApiRest.csproj.AssemblyReference.cache
