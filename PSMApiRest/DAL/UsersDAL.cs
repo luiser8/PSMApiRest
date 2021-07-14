@@ -36,6 +36,7 @@ namespace PSMApiRest.DAL
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         Users users = new Users();
+                        users.Cedula = Convert.ToInt32(dt.Rows[i]["Cedula"]);
                         users.UsuarioId = Convert.ToInt32(dt.Rows[i]["UsuarioId"]);
                         users.Nombres = Convert.ToString(dt.Rows[i]["Nombres"]);
                         users.Apellidos = Convert.ToString(dt.Rows[i]["Apellidos"]);

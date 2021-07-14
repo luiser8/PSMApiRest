@@ -13,7 +13,7 @@ SET NOCOUNT ON;
 BEGIN
 	BEGIN TRY
 		BEGIN
-				SELECT [UsuarioId],[Nombres],[Apellidos],[Usuario],[Contrasena],[Bloqueado],[FechaCreacion],[Estado]
+				SELECT [UsuarioId],[Cedula],[Nombres],[Apellidos],[Usuario],[Contrasena],[Bloqueado],[FechaCreacion],[Estado]
 				  FROM [dbo].[UsuariosSys]     		
 						WHERE [Usuario] = @Usuario AND [Contrasena] = @Contrasena
 			END
