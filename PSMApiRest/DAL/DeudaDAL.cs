@@ -49,7 +49,7 @@ namespace PSMApiRest.DAL
                         deuda.Monto = Convert.ToDecimal(dt.Rows[i]["Monto"]);
                         deuda.MontoFacturas = Convert.ToDecimal(dt.Rows[i]["MontoFacturas"]);
                         deuda.FechaVencimiento = Convert.ToDateTime(dt.Rows[i]["FechaVencimiento"]);
-                        deuda.Total = Convert.ToDecimal(dt.Rows[i]["Total"]);
+                        deuda.Total = Math.Floor(Convert.ToDecimal(dt.Rows[i]["Total"]) * 100) / 100;
                         DeudaList.Add(deuda);
                     }
                 }

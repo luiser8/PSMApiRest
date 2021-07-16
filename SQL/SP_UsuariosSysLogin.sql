@@ -5,7 +5,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[UsuariosSysLogin]
+ALTER PROCEDURE [dbo].[UsuariosSysLogin]
 	@Usuario VARCHAR(100) = NULL,
 	@Contrasena VARCHAR(200) = NULL
 AS
