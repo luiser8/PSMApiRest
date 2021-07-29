@@ -81,11 +81,13 @@ namespace PSMApiRest.DAL
             }
             return DeudaList;
         }
-        public List<Deuda> DeleteDeuda(int Id_Cuenta, int Pagada)
+        public List<Deuda> DeleteDeuda(int Id_Cuenta, int Pagada, int Id_Inscripcion, int Id_Arancel)
         {
             Parametros.Clear();
             Parametros.Add("@Id_Cuenta", Id_Cuenta);
             Parametros.Add("@Pagada", Pagada);
+            Parametros.Add("@Id_Inscripcion", Id_Inscripcion);
+            Parametros.Add("@Id_Arancel", Id_Arancel);
 
             List<Deuda> DeudaList = new List<Deuda>();
             dt = dbCon.Procedure("AMIGO", "DeudasSysDelete", Parametros);

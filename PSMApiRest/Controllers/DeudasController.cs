@@ -54,13 +54,13 @@ namespace PSMApiRest.Controllers
         /// <response code="400">Retorno de null si no hay registros</response> 
         // DELETE: api/deudas/delete
         [Route("delete")]
-        public IHttpActionResult DeleteDeuda([FromUri] int? id_cuenta, int? pagada)
+        public IHttpActionResult DeleteDeuda([FromUri] int? id_cuenta, int? pagada, int? id_inscripcion, int? id_arancel)
         {
             if (id_cuenta != null && pagada != null)
             {
                 try
                 {
-                    return Ok(deudaDAL.DeleteDeuda((int)id_cuenta, (int)pagada).ToList());
+                    return Ok(deudaDAL.DeleteDeuda((int)id_cuenta, (int)pagada, (int)id_inscripcion, (int)id_arancel).ToList());
                 }
                 catch (Exception ex)
                 {
