@@ -166,7 +166,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LapsosController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DAL\CuotaDAL.cs" />
     <Compile Include="DAL\DeudaDAL.cs" />
     <Compile Include="DAL\LapsosDAL.cs" />
@@ -174,11 +173,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Lib\ActualizarCuotas.cs" />
     <Compile Include="Lib\AuthorizationFilter.cs" />
     <Compile Include="Lib\Calculo.cs" />
     <Compile Include="Lib\Conexion.cs" />
     <Compile Include="Lib\DB.cs" />
     <Compile Include="Lib\MD5.cs" />
+    <Compile Include="Models\Abono.cs" />
+    <Compile Include="Models\ActualizacionCuota.cs" />
     <Compile Include="Models\Cuota.cs" />
     <Compile Include="Models\Deuda.cs" />
     <Compile Include="Models\Lapsos.cs" />

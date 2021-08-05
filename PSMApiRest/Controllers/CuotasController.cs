@@ -90,6 +90,33 @@ namespace PSMApiRest.Controllers
             }
             return StatusCode(HttpStatusCode.NoContent);
         }
+        /// <summary>
+        /// Indicamos parametros para Establecer actualizacion de cuotas
+        /// </summary>
+        /// <param name="actualizacionCuota"></param>
+        /// <returns> 
+        ///     Retorna un objeto JSON
+        /// </returns>
+        /// <response code="200">Retorno del registro</response>
+        /// <response code="400">Retorno de null si no hay registros</response> 
+        // PUT: api/cuotas/updateAll
+        [Route("updateAll")]
+        public IHttpActionResult PutAllCuota([FromBody] ActualizacionCuota actualizacionCuota)
+        {
+            ActualizarCuotas actualizarCuotas = new ActualizarCuotas();
+            if (actualizacionCuota != null)
+            {
+                try
+                {
+                    return Ok(actualizarCuotas.Establecer(actualizacionCuota.Cuota, actualizacionCuota.Abono, actualizacionCuota.Lapso, actualizacionCuota.Pagada).Count);
+                }
+                catch (Exception ex)
+                {
+                    return (IHttpActionResult)Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+                }
+            }
+            return StatusCode(HttpStatusCode.NoContent);
+        }
 
         /// <summary>
         /// Indicamos parametros para obtener deuda

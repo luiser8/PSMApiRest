@@ -15,7 +15,6 @@ namespace PSMApiRest.Controllers
     public class DeudasController : ApiController
     {
         DeudaDAL deudaDAL = new DeudaDAL();
-
         /// <summary>
         /// Indicamos parametros para obtener deuda
         /// </summary>

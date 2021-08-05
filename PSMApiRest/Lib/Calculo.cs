@@ -15,5 +15,11 @@ namespace PSMApiRest.Lib
             decimal totalToSave = total - (total % 0.01M);
             return totalToSave;
         }
+        public static decimal ConvertMonto(decimal Monto)
+        {
+            string decMath = Math.Abs(Monto).ToString();
+            decimal dec = Convert.ToDecimal(decMath);
+            return dec;
+        }
     }
 }
