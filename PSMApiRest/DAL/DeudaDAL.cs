@@ -41,7 +41,7 @@ namespace PSMApiRest.DAL
                         deuda.Id_Inscripcion = Convert.ToInt32(dt.Rows[i]["Id_Inscripcion"]);
                         deuda.Id_Arancel = Convert.ToInt32(dt.Rows[i]["Id_Arancel"]);
                         deuda.Identificador = Convert.ToString(dt.Rows[i]["Identificador"]);
-                        deuda.Fullnombre = Convert.ToString(dt.Rows[i]["Fullnombre"]);
+                        //deuda.Fullnombre = Convert.ToString(dt.Rows[i]["Fullnombre"]);
                         deuda.Descripcion = Convert.ToString(dt.Rows[i]["Descripcion"]);
                         deuda.Cuota = Convert.ToString(dt.Rows[i]["Cuota"]);
                         deuda.Lapso = Convert.ToString(dt.Rows[i]["Lapso"]);

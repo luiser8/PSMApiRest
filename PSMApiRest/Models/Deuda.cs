@@ -10,7 +10,7 @@ namespace PSMApiRest.Models
         public byte Pagada { get; set; }
         public string Lapso { get; set; }
         public string Identificador { get; set; }
-        public string Fullnombre { get; set; }
+        //public string Fullnombre { get; set; }
         public string Descripcion { get; set; }
         public string Cuota { get; set; }
         public decimal Monto { get; set; }

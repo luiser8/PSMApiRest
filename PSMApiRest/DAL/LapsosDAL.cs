@@ -24,7 +24,7 @@ namespace PSMApiRest.DAL
             Parametros.Clear();
 
             List<Lapsos> LapsosList = new List<Lapsos>();
-            dt = dbCon.Procedure("PRD", "LapsosSys", Parametros);
+            dt = dbCon.Procedure("AMIGO", "LapsosSys", Parametros);
 
             if (dbCon.ErrorEstatus)
             {
@@ -33,10 +33,11 @@ namespace PSMApiRest.DAL
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         Lapsos lapsos = new Lapsos();
+                        lapsos.Id_Periodo = Convert.ToInt16(dt.Rows[i]["Id_Periodo"]);
                         lapsos.Lapso = Convert.ToString(dt.Rows[i]["Lapso"]);
                         lapsos.Activo = Convert.ToByte(dt.Rows[i]["Activo"]);
                         lapsos.Cerrado = Convert.ToByte(dt.Rows[i]["Cerrado"]);
-                        lapsos.tipo_lapso = Convert.ToString(dt.Rows[i]["tipo_lapso"]);
+                        lapsos.tipo_lapso = Convert.ToByte(dt.Rows[i]["tipo_lapso"]);
                         LapsosList.Add(lapsos);
                     }
                 }
