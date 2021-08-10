@@ -1,0 +1,72 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Web.Http;
+using System.Text;
+using PSMApiRest.DAL;
+using PSMApiRest.Models;
+using System.Net;
+using System.Data;
+using ClosedXML.Excel;
+using System.IO;
+using System.Net.Http.Headers;
+
+namespace PSMApiRest.Controllers
+{
+    [Authorize]
+    [RoutePrefix("api/reporte")]
+    public class ReporteController : ApiController
+    {
+        ReporteDAL reporteDAL = new ReporteDAL();
+
+        /// <summary>
+        /// Indicamos parametros para obtener reporte de deudas
+        /// </summary>
+        /// <param name="Lapso"></param>
+        /// <returns> 
+        ///     Retorna un objeto JSON
+        /// </returns>
+        /// <response code="200">Retorno del registro</response>
+        /// <response code="400">Retorno de null si no hay registros</response> 
+        // POST: api/reporte/create
+        [HttpGet]
+        [Route("get")]
+        public HttpResponseMessage GetReporte([FromUri] string Lapso)
+        {
+            DataTable dt = new DataTable("Cuentas");
+            dt.Columns.AddRange(new DataColumn[8] { new DataColumn("Lapso"), 
+                                            new DataColumn("FullNombres"),
+                                            new DataColumn("Identificador"),
+                                            new DataColumn("Descripcion"),
+                                            new DataColumn("Cuota"),
+                                            new DataColumn("Monto"),
+                                            new DataColumn("MontoFacturas"),
+                                            new DataColumn("Total")
+            });
+
+            foreach (var reporte in reporteDAL.GetReporte(Lapso, 0))
+            {
+                dt.Rows.Add(reporte.Lapso, reporte.Fullnombre, reporte.Identificador, reporte.Descripcion, reporte.Cuota, reporte.Monto, reporte.MontoFacturas, reporte.Total);
+            }
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                var wwb = wb.Worksheets.Add(dt);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wwb.Columns().AdjustToContents();
+                    wb.SaveAs(stream);
+                    HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
+                    result.Content = new ByteArrayContent(stream.GetBuffer());
+                    result.Content.Headers.ContentLength = stream.Length;
+                    result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+                    {
+                        FileName = "reporte" + "_" + DateTime.Now.ToShortDateString() + ".xlsx"
+                    };
+                    result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                    return result;
+                }
+            }
+        }
+    }
+}
