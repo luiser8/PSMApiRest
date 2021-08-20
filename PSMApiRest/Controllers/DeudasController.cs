@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Threading.Tasks;
 using System.Web.Http;
 using PSMApiRest.DAL;
 using PSMApiRest.Lib;
@@ -32,7 +31,7 @@ namespace PSMApiRest.Controllers
             {
                 try
                 {
-                    return Ok(deudaDAL.GetDeuda(deuda.Lapso, /*deuda.Pagada, */deuda.Identificador).ToList());
+                    return Ok(deudaDAL.GetDeuda(deuda.Lapso, deuda.Identificador).ToList());
                 }
                 catch (Exception ex)
                 {

@@ -20,7 +20,7 @@ namespace PSMApiRest.DAL
             Parametros = new Hashtable();
         }
 
-        public List<Deuda> GetDeuda(string Lapso, /*int Pagada,*/ string Identificador)
+        public List<Deuda> GetDeuda(string Lapso, string Identificador)
         {
             Parametros.Clear();
             Parametros.Add("@Lapso", Lapso);
@@ -41,8 +41,6 @@ namespace PSMApiRest.DAL
                         deuda.Id_Inscripcion = Convert.ToInt32(dt.Rows[i]["Id_Inscripcion"]);
                         deuda.Id_Arancel = Convert.ToInt32(dt.Rows[i]["Id_Arancel"]);
                         deuda.Identificador = Convert.ToString(dt.Rows[i]["Identificador"]);
-                        //deuda.Fullnombre = Convert.ToString(dt.Rows[i]["Fullnombre"]);
-                        deuda.Descripcion = Convert.ToString(dt.Rows[i]["Descripcion"]);
                         deuda.Cuota = Convert.ToString(dt.Rows[i]["Cuota"]);
                         deuda.Lapso = Convert.ToString(dt.Rows[i]["Lapso"]);
                         deuda.Pagada = Convert.ToByte(dt.Rows[i]["Pagada"]);

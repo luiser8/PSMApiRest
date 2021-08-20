@@ -1,4 +1,3 @@
-C:\Users\Luis\source\repos\PSMApiRest\PSMApiRest\bin\PSMApiRest.dll.config
 C:\Users\Luis\source\repos\PSMApiRest\PSMApiRest\bin\PSMApiRest.dll
 C:\Users\Luis\source\repos\PSMApiRest\PSMApiRest\bin\PSMApiRest.pdb
 C:\Users\Luis\source\repos\PSMApiRest\PSMApiRest\bin\roslyn\csc.exe
@@ -128,3 +127,13 @@ C:\Users\ADMINISTRADOR\Source\Repos\PSMApiRest\PSMApiRest\obj\Debug\PSMApiRest.c
 C:\Users\ADMINISTRADOR\Source\Repos\PSMApiRest\PSMApiRest\obj\Debug\PSMApiRest.csproj.CopyComplete
 C:\Users\ADMINISTRADOR\Source\Repos\PSMApiRest\PSMApiRest\obj\Debug\PSMApiRest.dll
 C:\Users\ADMINISTRADOR\Source\Repos\PSMApiRest\PSMApiRest\obj\Debug\PSMApiRest.pdb
+C:\Users\Luis\source\repos\PSMApiRest\PSMApiRest\bin\ClosedXML.dll
+C:\Users\Luis\source\repos\PSMApiRest\PSMApiRest\bin\DocumentFormat.OpenXml.dll
+C:\Users\Luis\source\repos\PSMApiRest\PSMApiRest\bin\ExcelNumberFormat.dll
+C:\Users\Luis\source\repos\PSMApiRest\PSMApiRest\bin\System.IO.Packaging.dll
+C:\Users\Luis\source\repos\PSMApiRest\PSMApiRest\bin\ClosedXML.pdb
+C:\Users\Luis\source\repos\PSMApiRest\PSMApiRest\bin\ClosedXML.xml
+C:\Users\Luis\source\repos\PSMApiRest\PSMApiRest\bin\DocumentFormat.OpenXml.xml
+C:\Users\Luis\source\repos\PSMApiRest\PSMApiRest\bin\ExcelNumberFormat.xml
+C:\Users\Luis\source\repos\PSMApiRest\PSMApiRest\bin\System.IO.Packaging.xml
+C:\Users\Luis\source\repos\PSMApiRest\PSMApiRest\bin\PSMApiRest.dll.config

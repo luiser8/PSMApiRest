@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Web.Http;
-using System.Text;
 using PSMApiRest.DAL;
-using PSMApiRest.Models;
 using System.Net;
 using System.Data;
 using ClosedXML.Excel;
@@ -34,14 +31,14 @@ namespace PSMApiRest.Controllers
         public HttpResponseMessage GetReporte([FromUri] string Lapso)
         {
             DataTable dt = new DataTable("Cuentas");
-            dt.Columns.AddRange(new DataColumn[8] { new DataColumn("Lapso"), 
-                                            new DataColumn("FullNombres"),
-                                            new DataColumn("Identificador"),
-                                            new DataColumn("Descripcion"),
-                                            new DataColumn("Cuota"),
-                                            new DataColumn("Monto"),
-                                            new DataColumn("MontoFacturas"),
-                                            new DataColumn("Total")
+            dt.Columns.AddRange(new DataColumn[8] { new DataColumn("Lapso", typeof(string)), 
+                                            new DataColumn("FullNombres", typeof(string)),
+                                            new DataColumn("Identificador", typeof(Int32)),
+                                            new DataColumn("Descripcion", typeof(string)),
+                                            new DataColumn("Cuota", typeof(string)),
+                                            new DataColumn("Monto", typeof(decimal)),
+                                            new DataColumn("MontoFacturas", typeof(decimal)),
+                                            new DataColumn("Total", typeof(decimal))
             });
 
             foreach (var reporte in reporteDAL.GetReporte(Lapso, 0))
@@ -51,11 +48,13 @@ namespace PSMApiRest.Controllers
 
             using (XLWorkbook wb = new XLWorkbook())
             {
-                var wwb = wb.Worksheets.Add(dt);
+
                 using (MemoryStream stream = new MemoryStream())
                 {
+                    var wwb = wb.Worksheets.Add(dt);
                     wwb.Columns().AdjustToContents();
                     wb.SaveAs(stream);
+                    
                     HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
                     result.Content = new ByteArrayContent(stream.GetBuffer());
                     result.Content.Headers.ContentLength = stream.Length;

@@ -48,7 +48,7 @@ namespace PSMApiRest.Controllers
         [Route("insert")]
         public IHttpActionResult InsertCuota([FromBody] Cuota cuota)
         {
-            if (cuota.Monto != null)
+            if (cuota.Monto != 0)
             {
                 try
                 {
@@ -61,7 +61,40 @@ namespace PSMApiRest.Controllers
             }
             return CreatedAtRoute("DefaultApi", new { id = cuota.CuotaId }, cuota);
         }
-
+        /// <summary>
+        /// Indicamos parametros para grabar nuevas cuotas masivas
+        /// </summary>
+        /// <param name="cuota"></param>
+        /// <returns> 
+        ///     Retorna un objeto JSON
+        /// </returns>
+        /// <response code="200">Retorno del registro</response>
+        /// <response code="400">Retorno de null si no hay registros</response> 
+        // POST: api/cuotas/insertAll
+        [Route("insertAll")]
+        public IHttpActionResult InsertAllCuota([FromBody] Inscripciones inscripciones)
+        {
+            InsertarCuotasNuevas insertarCuotasNuevas = new InsertarCuotasNuevas();
+            if (inscripciones.Lapso != "")
+            {
+                try
+                {
+                    return Ok(insertarCuotasNuevas.Establecer(inscripciones.Lapso, 
+                                                                inscripciones.Plan1, 
+                                                                inscripciones.Plan2, 
+                                                                inscripciones.Plan3, 
+                                                                inscripciones.Plan4,
+                                                                inscripciones.Id_Arancel,
+                                                                inscripciones.Monto,
+                                                                inscripciones.FechaVencimiento).ToList());
+                }
+                catch (Exception ex)
+                {
+                    return (IHttpActionResult)Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+                }
+            }
+            return CreatedAtRoute("DefaultApi", new { id = inscripciones.Id_Inscripcion }, inscripciones);
+        }
         /// <summary>
         /// Indicamos parametros para obtener deuda
         /// </summary>
