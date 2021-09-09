@@ -70,5 +70,30 @@ namespace PSMApiRest.DAL
             }
             return InscripcionesList;
         }
+        public List<Inscripciones> InsertCuotaInsertada(int Id_Arancel, string Lapso, decimal Monto, DateTime FechaVencimiento)
+        {
+            Parametros.Clear();
+            Parametros.Add("@Id_Arancel", Id_Arancel);
+            Parametros.Add("@Lapso", Lapso);
+            Parametros.Add("@Monto", Monto);
+            Parametros.Add("@FechaVencimiento", FechaVencimiento);
+
+            List<Inscripciones> InscripcionesList = new List<Inscripciones>();
+            dt = dbCon.Procedure("AMIGO", "CuotasInsertadaSys", Parametros);
+
+            if (dbCon.ErrorEstatus)
+            {
+                if (dt.Rows.Count != 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        Inscripciones inscripciones = new Inscripciones();
+                        inscripciones.Id_Inscripcion = Id_Arancel;
+                        InscripcionesList.Add(inscripciones);
+                    }
+                }
+            }
+            return InscripcionesList;
+        }
     }
 }

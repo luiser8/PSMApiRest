@@ -19,13 +19,13 @@ namespace PSMApiRest.DAL
             dbCon = new DB();
             Parametros = new Hashtable();
         }
-        public List<Arancel> GetArancel(string Lapso)
+        public List<Arancel> GetArancel(string Lapso, int TipoArancel) //1 ArancelesSys 2 ArancelesSinInsertarSys
         {
             Parametros.Clear();
             Parametros.Add("@Lapso", Lapso);
 
             List<Arancel> ArancelList = new List<Arancel>();
-            dt = dbCon.Procedure("AMIGO", "ArancelesSys", Parametros);
+            dt = dbCon.Procedure("AMIGO", TipoArancel == 1 ? "ArancelesSys" : "ArancelesSinInsertarSys", Parametros);
 
             if (dbCon.ErrorEstatus)
             {

@@ -25,13 +25,13 @@ namespace PSMApiRest.Controllers
         /// <response code="400">Retorno de null si no hay registros</response> 
         // GET: api/arancel/get
         [Route("get")]
-        public IHttpActionResult GetArancel([FromUri] string Lapso)
+        public IHttpActionResult GetArancel([FromUri] string Lapso, int TipoArancel)
         {
             if (Lapso != null)
             {
                 try
                 {
-                    return Ok(arancelDAL.GetArancel(Lapso).ToList());
+                    return Ok(arancelDAL.GetArancel(Lapso, TipoArancel).ToList());
                 }
                 catch (Exception ex)
                 {

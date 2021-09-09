@@ -36,6 +36,26 @@ namespace PSMApiRest.Controllers
             }
         }
         /// <summary>
+        /// </summary>
+        /// <returns> 
+        ///     Retorna un objeto JSON
+        /// </returns>
+        /// <response code="200">Retorno del registro</response>
+        /// <response code="400">Retorno de null si no hay registros</response> 
+        // GET: api/cuotas/insertsAll
+        [Route("insertsAll")]
+        public IHttpActionResult GetCuotaAll(string Lapso)
+        {
+            try
+            {
+                return Ok(cuotaDAL.GetCuotasInsertadas(Lapso).ToList());
+            }
+            catch (Exception ex)
+            {
+                return (IHttpActionResult)Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+        /// <summary>
         /// Indicamos parametros para obtener deuda
         /// </summary>
         /// <param name="cuota"></param>

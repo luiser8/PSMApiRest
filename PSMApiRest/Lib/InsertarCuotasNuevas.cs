@@ -17,6 +17,7 @@ namespace PSMApiRest.Models
                 {
                     inscripcionesDAL.InsertCuota(inscripciones[i].Id_Inscripcion, Id_Arancel, Monto, FechaVencimiento);
                 }
+                inscripcionesDAL.InsertCuotaInsertada(Id_Arancel, Lapso, Monto, FechaVencimiento);
             }
             return inscripciones;
         }

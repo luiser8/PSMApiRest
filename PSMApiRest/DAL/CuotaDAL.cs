@@ -45,7 +45,31 @@ namespace PSMApiRest.DAL
             }
             return CuotaList;
         }
+        public List<CuotasInsertadas> GetCuotasInsertadas(string Lapso)
+        {
+            Parametros.Clear();
+            Parametros.Add("@Lapso", Lapso);
 
+            List<CuotasInsertadas> CuotaList = new List<CuotasInsertadas>();
+            dt = dbCon.Procedure("AMIGO", "CuotasInsertadasAllSys", Parametros);
+
+            if (dbCon.ErrorEstatus)
+            {
+                if (dt.Rows.Count != 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        CuotasInsertadas cuota = new CuotasInsertadas();
+                        cuota.Id_Arancel = Convert.ToInt32(dt.Rows[i]["Id_Arancel"]);
+                        cuota.Descripcion = Convert.ToString(dt.Rows[i]["Descripcion"]);
+                        cuota.Monto = Convert.ToDecimal(dt.Rows[i]["Monto"]);
+                        cuota.FechaVencimiento = Convert.ToDateTime(dt.Rows[i]["FechaVencimiento"]);
+                        CuotaList.Add(cuota);
+                    }
+                }
+            }
+            return CuotaList;
+        }
         public List<Cuota> InsertCuota(decimal Monto)
         {
             Parametros.Clear();

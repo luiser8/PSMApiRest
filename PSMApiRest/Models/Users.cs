@@ -5,6 +5,8 @@ namespace PSMApiRest.Models
     public class Users
     {
         public int UsuarioId { get; set; }
+        public int RolId { get; set; }
+        public int Rol { get; set; }
         public int Cedula { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }

@@ -187,6 +187,7 @@
     <Compile Include="Controllers\LapsosController.cs" />
     <Compile Include="Controllers\PlanesController.cs" />
     <Compile Include="Controllers\ReporteController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="DAL\AlumnoDAL.cs" />
     <Compile Include="DAL\ArancelDAL.cs" />
@@ -196,6 +197,7 @@
     <Compile Include="DAL\LapsosDAL.cs" />
     <Compile Include="DAL\PlanesDAL.cs" />
     <Compile Include="DAL\ReporteDAL.cs" />
+    <Compile Include="DAL\RolesDAL.cs" />
     <Compile Include="DAL\UsersDAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -211,12 +213,14 @@
     <Compile Include="Models\Alumno.cs" />
     <Compile Include="Models\Arancel.cs" />
     <Compile Include="Models\Cuota.cs" />
+    <Compile Include="Models\CuotasInsertadas.cs" />
     <Compile Include="Models\Deuda.cs" />
     <Compile Include="Models\Inscripciones.cs" />
     <Compile Include="Lib\InsertarCuotasNuevas.cs" />
     <Compile Include="Models\Lapsos.cs" />
     <Compile Include="Models\Planes.cs" />
     <Compile Include="Models\Reporte.cs" />
+    <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
