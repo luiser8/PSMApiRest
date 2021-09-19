@@ -80,11 +80,20 @@ INSERT INTO [dbo].[UsuariosSys]
            ,0
            ,GETDATE()
            ,1),
+		   (2
+		   ,21221211
+		   ,'Joram'
+           ,'Gimenez'
+           ,'joram.g'
+           ,'827ccb0eea8a706c4c34a16891f84e7b'
+           ,0
+           ,GETDATE()
+           ,1),
 		   (3
 		   ,8220801
-		   ,'Luisa'
-           ,'Rondón'
-           ,'luisa.r'
+		   ,'Carol'
+           ,'Lopez'
+           ,'carol.l'
            ,'827ccb0eea8a706c4c34a16891f84e7b'
            ,0
            ,GETDATE()

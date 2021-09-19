@@ -134,10 +134,10 @@ namespace PSMApiRest.DAL
             }
             return DeudaList;
         }
-        public List<Deuda> DeleteDeuda(int Id_Cuenta, int Pagada, int Id_Inscripcion, int Id_Arancel)
+        public List<Deuda> DeleteDeuda(/*int Id_Cuenta, */int Pagada, int Id_Inscripcion, int Id_Arancel)
         {
             Parametros.Clear();
-            Parametros.Add("@Id_Cuenta", Id_Cuenta);
+            //Parametros.Add("@Id_Cuenta", Id_Cuenta);
             Parametros.Add("@Pagada", Pagada);
             Parametros.Add("@Id_Inscripcion", Id_Inscripcion);
             Parametros.Add("@Id_Arancel", Id_Arancel);
@@ -152,7 +152,7 @@ namespace PSMApiRest.DAL
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         Deuda deuda = new Deuda();
-                        deuda.Id_Cuenta = Id_Cuenta;
+                        deuda.Id_Cuenta = Id_Inscripcion;
                         DeudaList.Add(deuda);
                     }
                 }
@@ -178,6 +178,32 @@ namespace PSMApiRest.DAL
                     {
                         Deuda deuda = new Deuda();
                         deuda.Id_Inscripcion = Id_Inscripcion;
+                        DeudaList.Add(deuda);
+                    }
+                }
+            }
+            return DeudaList;
+        }
+        public List<Deuda> GetDeudasExists(int Id_Inscripcion, int Id_Arancel)
+        {
+            Parametros.Clear();
+            Parametros.Add("@Id_Inscripcion", Id_Inscripcion);
+            Parametros.Add("@Id_Arancel", Id_Arancel);
+
+            List<Deuda> DeudaList = new List<Deuda>();
+            dt = dbCon.Procedure("AMIGO", "DeudasExistentesSys", Parametros);
+
+            if (dbCon.ErrorEstatus)
+            {
+                if (dt.Rows.Count != 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        Deuda deuda = new Deuda();
+                        deuda.Id_Cuenta = Convert.ToInt32(dt.Rows[i]["Id_Cuenta"]);
+                        deuda.Id_Inscripcion = Convert.ToInt32(dt.Rows[i]["Id_Inscripcion"]);
+                        deuda.Id_Arancel = Convert.ToInt32(dt.Rows[i]["Id_Arancel"]);
+                        deuda.Pagada = Convert.ToByte(dt.Rows[i]["Pagada"]);
                         DeudaList.Add(deuda);
                     }
                 }

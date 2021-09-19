@@ -25,13 +25,13 @@ namespace PSMApiRest.Controllers
         /// <response code="400">Retorno de null si no hay registros</response> 
         // GET: api/planes/get
         [Route("get")]
-        public IHttpActionResult GetPlanes([FromUri] string Lapso)
+        public IHttpActionResult GetPlanes([FromUri] string Lapso, byte Tipo)
         {
             if (Lapso != null)
             {
                 try
                 {
-                    return Ok(planesDAL.GetPlanes(Lapso).ToList());
+                    return Ok(planesDAL.GetPlanes(Lapso, Tipo).ToList());
                 }
                 catch (Exception ex)
                 {

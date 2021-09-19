@@ -43,8 +43,9 @@ namespace PSMApiRest.Controllers
         /// <summary>
         /// Indicamos parametros para obtener deuda
         /// </summary>
-        /// <param name="id_cuenta"></param>
         /// <param name="pagada"></param>
+        /// <param name="id_inscripcion"></param>
+        /// <param name="id_arancel"></param>
         /// <returns> 
         ///     Retorna un objeto JSON
         /// </returns>
@@ -52,13 +53,13 @@ namespace PSMApiRest.Controllers
         /// <response code="400">Retorno de null si no hay registros</response> 
         // DELETE: api/deudas/delete
         [Route("delete")]
-        public IHttpActionResult DeleteDeuda([FromUri] int? id_cuenta, int? pagada, int? id_inscripcion, int? id_arancel)
+        public IHttpActionResult DeleteDeuda([FromUri] /*int? id_cuenta,*/ int? pagada, int? id_inscripcion, int? id_arancel)
         {
-            if (id_cuenta != null && pagada != null)
+            if (id_inscripcion != null && id_arancel != null)
             {
                 try
                 {
-                    return Ok(deudaDAL.DeleteDeuda((int)id_cuenta, (int)pagada, (int)id_inscripcion, (int)id_arancel).ToList());
+                    return Ok(deudaDAL.DeleteDeuda(/*(int)id_cuenta, */(int)pagada, (int)id_inscripcion, (int)id_arancel).ToList());
                 }
                 catch (Exception ex)
                 {

@@ -45,6 +45,34 @@ namespace PSMApiRest.DAL
             }
             return InscripcionesList;
         }
+        public List<Inscripciones> GetIdInscripcion(string Lapso, string Identificador)
+        {
+            Parametros.Clear();
+            Parametros.Add("@Lapso", Lapso);
+            Parametros.Add("@Identificador", Identificador);
+
+            List<Inscripciones> Id_Inscripcion = new List<Inscripciones>();
+            dt = dbCon.Procedure("AMIGO", "IdInscripcionSys", Parametros);
+
+            if (dbCon.ErrorEstatus)
+            {
+                if (dt.Rows.Count != 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        Inscripciones inscripciones = new Inscripciones();
+                        inscripciones.Id_Inscripcion = Convert.ToInt32(dt.Rows[i]["Id_Inscripcion"]);
+                        inscripciones.Id_Plan = Convert.ToInt32(dt.Rows[i]["Id_Plan"]);
+                        inscripciones.Id_TipoIngreso = Convert.ToInt32(dt.Rows[i]["Id_TipoIngreso"]);
+                        inscripciones.Id_Carrera = Convert.ToInt32(dt.Rows[i]["Id_Carrera"]);
+                        inscripciones.PlanDePago = Convert.ToString(dt.Rows[i]["PlanDePago"]);
+                        inscripciones.TipoIngreso = Convert.ToString(dt.Rows[i]["TipoIngreso"]);
+                        Id_Inscripcion.Add(inscripciones);
+                    }
+                }
+            }
+            return Id_Inscripcion;
+        }
         public List<Inscripciones> InsertCuota(int Id_Inscripcion, int Id_Arancel, decimal Monto, DateTime FechaVencimiento)
         {
             Parametros.Clear();
@@ -70,16 +98,15 @@ namespace PSMApiRest.DAL
             }
             return InscripcionesList;
         }
-        public List<Inscripciones> InsertCuotaInsertada(int Id_Arancel, string Lapso, decimal Monto, DateTime FechaVencimiento)
+        public List<Inscripciones> UpdateInscripcion(int Id_Inscripcion, int Id_Plan, int Id_TipoIngreso)
         {
             Parametros.Clear();
-            Parametros.Add("@Id_Arancel", Id_Arancel);
-            Parametros.Add("@Lapso", Lapso);
-            Parametros.Add("@Monto", Monto);
-            Parametros.Add("@FechaVencimiento", FechaVencimiento);
+            Parametros.Add("@Id_Inscripcion", Id_Inscripcion);
+            Parametros.Add("@Id_Plan", Id_Plan);
+            Parametros.Add("@Id_TipoIngreso", Id_TipoIngreso);
 
             List<Inscripciones> InscripcionesList = new List<Inscripciones>();
-            dt = dbCon.Procedure("AMIGO", "CuotasInsertadaSys", Parametros);
+            dt = dbCon.Procedure("AMIGO", "InscripcionSysUpdate", Parametros);
 
             if (dbCon.ErrorEstatus)
             {
@@ -88,7 +115,7 @@ namespace PSMApiRest.DAL
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         Inscripciones inscripciones = new Inscripciones();
-                        inscripciones.Id_Inscripcion = Id_Arancel;
+                        inscripciones.Id_Inscripcion = Id_Inscripcion;
                         InscripcionesList.Add(inscripciones);
                     }
                 }
