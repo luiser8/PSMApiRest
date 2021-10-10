@@ -61,6 +61,7 @@ namespace PSMApiRest.DAL
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         Inscripciones inscripciones = new Inscripciones();
+                        inscripciones.Id_Terceros = Convert.ToInt32(dt.Rows[i]["Id_Terceros"]);
                         inscripciones.Id_Inscripcion = Convert.ToInt32(dt.Rows[i]["Id_Inscripcion"]);
                         inscripciones.Id_Plan = Convert.ToInt32(dt.Rows[i]["Id_Plan"]);
                         inscripciones.Id_TipoIngreso = Convert.ToInt32(dt.Rows[i]["Id_TipoIngreso"]);

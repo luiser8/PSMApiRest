@@ -17,7 +17,6 @@ namespace PSMApiRest.Models
             {
                 for (int i = 0; i < inscripciones.Count; i++)
                 {
-                    //con Id_Inscripcion, Id_Arancel, solo insertar aquellos que no la tengan en cuentas por cobrar y en detalles de factura
                     if (
                         facturaDAL.GetFacturaExists(inscripciones[i].Id_Inscripcion, Id_Arancel).Count == 0 
                         && 

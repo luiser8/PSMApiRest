@@ -19,7 +19,7 @@ namespace PSMApiRest.DAL
             dbCon = new DB();
             Parametros = new Hashtable();
         }
-        public List<Reporte> GetReporte(string Lapso, int Pagada)
+        public List<Reporte> GetReporte(string Lapso, byte Pagada)
         {
             Parametros.Clear();
             Parametros.Add("@Lapso", Lapso);
@@ -27,7 +27,7 @@ namespace PSMApiRest.DAL
             Parametros.Add("@Identificador", null);
 
             List<Reporte> reporteList = new List<Reporte>();
-            dt = dbCon.Procedure("AMIGO", "DeudasSysNegativos", Parametros);
+            dt = dbCon.Procedure("AMIGO", Pagada == 0 ? "DeudasSysNegativos" : "DeudasSysPagadas", Parametros);
 
             if (dbCon.ErrorEstatus)
             {

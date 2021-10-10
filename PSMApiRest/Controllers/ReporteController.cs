@@ -28,7 +28,7 @@ namespace PSMApiRest.Controllers
         // POST: api/reporte/create
         [HttpGet]
         [Route("get")]
-        public HttpResponseMessage GetReporte([FromUri] string Lapso)
+        public HttpResponseMessage GetReporte([FromUri] string Lapso, byte Pagada)
         {
             DataTable dt = new DataTable("Cuentas");
             dt.Columns.AddRange(new DataColumn[8] { new DataColumn("Lapso", typeof(string)), 
@@ -41,7 +41,7 @@ namespace PSMApiRest.Controllers
                                             new DataColumn("Total", typeof(decimal))
             });
 
-            foreach (var reporte in reporteDAL.GetReporte(Lapso, 0))
+            foreach (var reporte in reporteDAL.GetReporte(Lapso, Pagada))
             {
                 dt.Rows.Add(reporte.Lapso, reporte.Fullnombre, reporte.Identificador, reporte.Descripcion, reporte.Cuota, reporte.Monto, reporte.MontoFacturas, reporte.Total);
             }

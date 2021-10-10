@@ -10,6 +10,7 @@ namespace PSMApiRest.Models
         public int Plan2 { get; set; }
         public int Plan3 { get; set; }
         public int Plan4 { get; set; }
+        public int Id_Terceros { get; set; }
         public int Id_Inscripcion { get; set; }
         public int Id_Arancel { get; set; }
         public int Id_Plan { get; set; }

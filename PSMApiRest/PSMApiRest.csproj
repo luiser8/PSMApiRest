@@ -189,6 +189,7 @@
     <Compile Include="Controllers\PlanesController.cs" />
     <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\TercerosController.cs" />
     <Compile Include="Controllers\TipoIngresoController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="DAL\AlumnoDAL.cs" />
@@ -201,6 +202,7 @@
     <Compile Include="DAL\PlanesDAL.cs" />
     <Compile Include="DAL\ReporteDAL.cs" />
     <Compile Include="DAL\RolesDAL.cs" />
+    <Compile Include="DAL\TercerosDAL.cs" />
     <Compile Include="DAL\TipoIngresoDAL.cs" />
     <Compile Include="DAL\UsersDAL.cs" />
     <Compile Include="Global.asax.cs">

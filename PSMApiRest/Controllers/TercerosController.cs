@@ -7,25 +7,26 @@ using PSMApiRest.DAL;
 namespace PSMApiRest.Controllers
 {
     [Authorize]
-    [RoutePrefix("api/tipoingreso")]
-    public class TipoIngresoController : ApiController
+    [RoutePrefix("api/terceros")]
+    public class TercerosController : ApiController
     {
-        TipoIngresoDAL tipoIngresoDAL = new TipoIngresoDAL();
+        TercerosDAL tercerosDAL = new TercerosDAL();
         /// <summary>
         /// </summary>
-        /// <param name="Lapso"></param>
+        /// <param name="Id_Terceros"></param>
+        /// <param name="Identificador"></param>
         /// <returns> 
         ///     Retorna un objeto JSON
         /// </returns>
         /// <response code="200">Retorno del registro</response>
         /// <response code="400">Retorno de null si no hay registros</response> 
-        // GET: api/tipoingreso/get
-        [Route("get")]
-        public IHttpActionResult GetTipoIngreso(string Lapso)
+        // PUT: api/terceros/update
+        [Route("update")]
+        public IHttpActionResult PutIdentificador(string Id_Terceros, string Identificador)
         {
             try
             {
-                return Ok(tipoIngresoDAL.GetTiposDeIngreso(Lapso).ToArray());
+                return Ok(tercerosDAL.UpdateIdentificador(Id_Terceros, Identificador));
             }
             catch (Exception ex)
             {
