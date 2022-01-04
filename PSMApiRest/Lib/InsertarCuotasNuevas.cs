@@ -28,5 +28,27 @@ namespace PSMApiRest.Models
             }
             return inscripciones;
         }
+        public List<Inscripciones> EstablecerSAIA(string Lapso, int Plan1, int Plan2, int Id_Arancel, decimal Monto, DateTime FechaVencimiento)
+        {
+            InscripcionesDAL inscripcionesDAL = new InscripcionesDAL();
+            FacturaDAL facturaDAL = new FacturaDAL();
+            DeudaDAL deudaDAL = new DeudaDAL();
+            List<Inscripciones> inscripciones = inscripcionesDAL.GetInscripcionesSAIA(Lapso, Plan1, Plan2);
+
+            if (inscripciones.Count > 0)
+            {
+                for (int i = 0; i < inscripciones.Count; i++)
+                {
+                    if (
+                        facturaDAL.GetFacturaExists(inscripciones[i].Id_Inscripcion, Id_Arancel).Count == 0
+                        &&
+                        deudaDAL.GetDeudasExists(inscripciones[i].Id_Inscripcion, Id_Arancel).Count == 0)
+                    {
+                        inscripcionesDAL.InsertCuota(inscripciones[i].Id_Inscripcion, Id_Arancel, Monto, FechaVencimiento);
+                    }
+                }
+            }
+            return inscripciones;
+        }
     }
 }

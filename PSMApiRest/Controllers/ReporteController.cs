@@ -31,9 +31,10 @@ namespace PSMApiRest.Controllers
         public HttpResponseMessage GetReporte([FromUri] string Lapso, byte Pagada)
         {
             DataTable dt = new DataTable("Cuentas");
-            dt.Columns.AddRange(new DataColumn[8] { new DataColumn("Lapso", typeof(string)), 
-                                            new DataColumn("FullNombres", typeof(string)),
+            dt.Columns.AddRange(new DataColumn[9] { new DataColumn("Lapso", typeof(string)),
                                             new DataColumn("Identificador", typeof(Int32)),
+                                            new DataColumn("FullNombres", typeof(string)),
+                                            new DataColumn("Telefonos", typeof(string)),
                                             new DataColumn("Descripcion", typeof(string)),
                                             new DataColumn("Cuota", typeof(string)),
                                             new DataColumn("Monto", typeof(decimal)),
@@ -43,7 +44,7 @@ namespace PSMApiRest.Controllers
 
             foreach (var reporte in reporteDAL.GetReporte(Lapso, Pagada))
             {
-                dt.Rows.Add(reporte.Lapso, reporte.Fullnombre, reporte.Identificador, reporte.Descripcion, reporte.Cuota, reporte.Monto, reporte.MontoFacturas, reporte.Total);
+                dt.Rows.Add(reporte.Lapso, reporte.Identificador, reporte.Fullnombre, reporte.Telefonos, reporte.Descripcion, reporte.Cuota, reporte.Monto, reporte.MontoFacturas, reporte.Total);
             }
 
             using (XLWorkbook wb = new XLWorkbook())

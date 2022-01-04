@@ -20,10 +20,11 @@ namespace PSMApiRest.DAL
             Parametros = new Hashtable();
         }
 
-        public List<Cuota> GetCuota()
+        public List<Cuota> GetCuota(byte Tipo, byte Estado)
         {
             Parametros.Clear();
-            //Parametros.Add("@Lapso", Lapso);
+            Parametros.Add("@Tipo", Tipo);
+            Parametros.Add("@Estado", Estado);
 
             List<Cuota> CuotaList = new List<Cuota>();
             dt = dbCon.Procedure("AMIGO", "CuotasSys", Parametros);
@@ -37,6 +38,8 @@ namespace PSMApiRest.DAL
                         Cuota cuota = new Cuota();
                         cuota.CuotaId = Convert.ToInt32(dt.Rows[i]["CuotaId"]);
                         cuota.Monto = Convert.ToDecimal(dt.Rows[i]["Monto"]);
+                        cuota.Tipo = Convert.ToByte(dt.Rows[i]["Tipo"]);
+                        cuota.Tasa = Convert.ToDecimal(dt.Rows[i]["Tasa"]);
                         cuota.FechaCreacion = Convert.ToDateTime(dt.Rows[i]["FechaCreacion"]);
                         cuota.Estado = Convert.ToByte(dt.Rows[i]["Estado"]);
                         CuotaList.Add(cuota);
@@ -70,10 +73,14 @@ namespace PSMApiRest.DAL
             }
             return CuotaList;
         }
-        public List<Cuota> InsertCuota(decimal Monto)
+        public List<Cuota> InsertCuota(int CuotaId, byte Tipo, decimal Tasa, decimal Monto, byte Estado)
         {
             Parametros.Clear();
+            Parametros.Add("@CuotaId", CuotaId);
+            Parametros.Add("@Tipo", Tipo);
+            Parametros.Add("@Tasa", Tasa);
             Parametros.Add("@Monto", Monto);
+            Parametros.Add("@Estado", Estado);
 
             List<Cuota> CuotaList = new List<Cuota>();
             dt = dbCon.Procedure("AMIGO", "CuotasSysInsert", Parametros);
@@ -85,6 +92,8 @@ namespace PSMApiRest.DAL
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         Cuota cuota = new Cuota();
+                        cuota.CuotaId = CuotaId;
+                        cuota.Tasa = Tasa;
                         cuota.Monto = Monto;
                         CuotaList.Add(cuota);
                     }

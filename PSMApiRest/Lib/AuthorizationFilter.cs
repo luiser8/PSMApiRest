@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Security.Principal;
 using System.Text;
@@ -23,14 +21,13 @@ namespace PSMApiRest.Lib
 
                     if (user == "P$m" && password == "Bn@")
                     {
-                        var principal = new GenericPrincipal(new GenericIdentity(user), null);
-                        PutPrincipal(principal);
+                        sendPrincipal(new GenericPrincipal(new GenericIdentity(user), null));
                     }
                 }
                 return base.SendAsync(request, cancellationToken);
             }
 
-            private void PutPrincipal(IPrincipal principal)
+            private void sendPrincipal(IPrincipal principal)
             {
                 Thread.CurrentPrincipal = principal;
                 if (HttpContext.Current != null)

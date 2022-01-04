@@ -17,6 +17,8 @@ namespace PSMApiRest.Controllers
 
         /// <summary>
         /// </summary>
+        /// <param name="Tipo"></param>
+        /// <param name="Estado"></param>
         /// <returns> 
         ///     Retorna un objeto JSON
         /// </returns>
@@ -24,11 +26,11 @@ namespace PSMApiRest.Controllers
         /// <response code="400">Retorno de null si no hay registros</response> 
         // GET: api/cuotas/all
         [Route("all")]
-        public IHttpActionResult GetCuota()
+        public IHttpActionResult GetCuota([FromUri] byte Tipo, byte Estado)
         {
             try
             {
-                return Ok(cuotaDAL.GetCuota());
+                return Ok(cuotaDAL.GetCuota(Tipo, Estado).ToList());
             }
             catch (Exception ex)
             {
@@ -72,7 +74,7 @@ namespace PSMApiRest.Controllers
             {
                 try
                 {
-                    return Ok(cuotaDAL.InsertCuota(cuota.Monto).ToList());
+                    return Ok(cuotaDAL.InsertCuota(cuota.CuotaId, cuota.Tipo, cuota.Tasa, cuota.Monto, cuota.Estado).ToList());
                 }
                 catch (Exception ex)
                 {
@@ -84,7 +86,7 @@ namespace PSMApiRest.Controllers
         /// <summary>
         /// Indicamos parametros para grabar nuevas cuotas masivas
         /// </summary>
-        /// <param name="cuota"></param>
+        /// <param name="inscripciones"></param>
         /// <returns> 
         ///     Retorna un objeto JSON
         /// </returns>
@@ -116,6 +118,38 @@ namespace PSMApiRest.Controllers
             return CreatedAtRoute("DefaultApi", new { id = inscripciones.Id_Inscripcion }, inscripciones);
         }
         /// <summary>
+        /// Indicamos parametros para grabar nuevas cuotas masivas de SAIA Internacional
+        /// </summary>
+        /// <param name="inscripciones"></param>
+        /// <returns> 
+        ///     Retorna un objeto JSON
+        /// </returns>
+        /// <response code="200">Retorno del registro</response>
+        /// <response code="400">Retorno de null si no hay registros</response> 
+        // POST: api/cuotas/insertAllSAIA
+        [Route("insertAllSAIA")]
+        public IHttpActionResult InsertAllSAIACuota([FromBody] Inscripciones inscripciones)
+        {
+            InsertarCuotasNuevas insertarCuotasNuevas = new InsertarCuotasNuevas();
+            if (inscripciones.Lapso != "")
+            {
+                try
+                {
+                    return Ok(insertarCuotasNuevas.EstablecerSAIA(inscripciones.Lapso,
+                                                                inscripciones.Plan1,
+                                                                inscripciones.Plan2,
+                                                                inscripciones.Id_Arancel,
+                                                                inscripciones.Monto,
+                                                                inscripciones.FechaVencimiento).ToList());
+                }
+                catch (Exception ex)
+                {
+                    return (IHttpActionResult)Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+                }
+            }
+            return CreatedAtRoute("DefaultApi", new { id = inscripciones.Id_Inscripcion }, inscripciones);
+        }
+        /// <summary>
         /// Indicamos parametros para obtener deuda
         /// </summary>
         /// <param name="cuotaId"></param>
@@ -133,7 +167,7 @@ namespace PSMApiRest.Controllers
             {
                 try
                 {
-                    return Ok(cuotaDAL.EditCuota((int)cuotaId, cuota.Monto, cuota.Estado).ToList());
+                    return Ok(cuotaDAL.EditCuota((int)cuotaId, cuota.Monto, cuota.Estado));
                 }
                 catch (Exception ex)
                 {

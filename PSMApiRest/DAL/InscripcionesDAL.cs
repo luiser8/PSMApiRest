@@ -45,6 +45,30 @@ namespace PSMApiRest.DAL
             }
             return InscripcionesList;
         }
+        public List<Inscripciones> GetInscripcionesSAIA(string Lapso, int Plan1, int Plan2)
+        {
+            Parametros.Clear();
+            Parametros.Add("@Lapso", Lapso);
+            Parametros.Add("@Plan1", Plan1);
+            Parametros.Add("@Plan2", Plan2);
+
+            List<Inscripciones> InscripcionesList = new List<Inscripciones>();
+            dt = dbCon.Procedure("AMIGO", "InscripcionesSAIASys", Parametros);
+
+            if (dbCon.ErrorEstatus)
+            {
+                if (dt.Rows.Count != 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        Inscripciones inscripciones = new Inscripciones();
+                        inscripciones.Id_Inscripcion = Convert.ToInt32(dt.Rows[i]["Id_Inscripcion"]);
+                        InscripcionesList.Add(inscripciones);
+                    }
+                }
+            }
+            return InscripcionesList;
+        }
         public List<Inscripciones> GetIdInscripcion(string Lapso, string Identificador)
         {
             Parametros.Clear();

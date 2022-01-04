@@ -39,6 +39,7 @@ namespace PSMApiRest.DAL
                         reporte.Lapso = Convert.ToString(dt.Rows[i]["Lapso"]);
                         reporte.Fullnombre = Convert.ToString(dt.Rows[i]["Fullnombre"]);
                         reporte.Identificador = Convert.ToString(dt.Rows[i]["Identificador"]);
+                        reporte.Telefonos = Convert.ToString(dt.Rows[i]["Telefonos"]);
                         reporte.Descripcion = Convert.ToString(dt.Rows[i]["Descripcion"]);
                         reporte.Cuota = Convert.ToString(dt.Rows[i]["Cuota"]);
                         reporte.Monto = Convert.ToDecimal(dt.Rows[i]["Monto"]);

@@ -23,9 +23,10 @@ namespace PSMApiRest.DAL
         {
             Parametros.Clear();
             Parametros.Add("@Lapso", Lapso);
+            Parametros.Add("@Tipo", TipoArancel);
 
             List<Arancel> ArancelList = new List<Arancel>();
-            dt = dbCon.Procedure("AMIGO", TipoArancel == 1 ? "ArancelesSys" : "ArancelesSinInsertarSys", Parametros);
+            dt = dbCon.Procedure("AMIGO", TipoArancel == 1 || TipoArancel == 3 ? "ArancelesSys" : "ArancelesSinInsertarSys", Parametros);
 
             if (dbCon.ErrorEstatus)
             {

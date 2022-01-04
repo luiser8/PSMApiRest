@@ -10,6 +10,7 @@ namespace PSMApiRest.Models
         public string Lapso { get; set; }
         public string Fullnombre { get; set; }
         public string Identificador { get; set; }
+        public string Telefonos { get; set; }
         public string Descripcion { get; set; }
         public string Cuota { get; set; }
         public decimal Monto { get; set; }
